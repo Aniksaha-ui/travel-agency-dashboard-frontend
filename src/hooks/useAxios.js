@@ -27,7 +27,7 @@ const useAxios = () => {
 
   const apiClient = (method, url, body) => {
     const headers = {
-      authorization :'Bearer '+localStorage.getItem('token') ? localStorage.getItem('token') : ""
+      authorization :localStorage.getItem('token') ? 'Bearer ' +localStorage.getItem('token') : ""
     }
     return api
       .request({ method, url, data: body, headers })

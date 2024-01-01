@@ -16,13 +16,14 @@ const Login = () => {
       password: passwordRef.current.value
     }
     const response = await api.login(user);
-    console.log(response.accessToken);
+    console.log(response.accessToken,"access token");
 
     if(response.data){
       await localStorage.setItem("token",response.accessToken);
-      // navigate("/users");
+      /** create a logic if admin then redirect to tour panel and if user then go to my transection page*/
+      navigate("/users");
     }
-    const tours = api.getTour();
+    // const tours = api.getTour();
   
   }
 

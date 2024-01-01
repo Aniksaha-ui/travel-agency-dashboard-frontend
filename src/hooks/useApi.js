@@ -24,7 +24,6 @@ const useApi = () => {
   const login = async (data) => {
     const response = await axiosClient.apiClient("POST", "user/login", data);
     if (response) {
-      
       if (response?.data) {
         return response.data;
       }
