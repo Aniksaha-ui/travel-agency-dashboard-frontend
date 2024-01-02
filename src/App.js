@@ -8,6 +8,7 @@ import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import Index from "./pages/dashboard/tours";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -34,6 +35,10 @@ function App() {
                 path="new"
                 element={<New inputs={productInputs} title="Add New Product" />}
               />
+            </Route>
+
+            <Route path="tours">
+              <Route index element={<Index />} />
             </Route>
           </Route>
         </Routes>

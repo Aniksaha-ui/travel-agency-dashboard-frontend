@@ -54,8 +54,7 @@ const useApi = () => {
     const response = await axiosClient.apiClient(
       "POST","tour"
     );
-    console.log(response,"from service");
-    return null;
+  return response.data.data
   };
 
 

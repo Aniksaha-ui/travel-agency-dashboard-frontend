@@ -1,12 +1,33 @@
-import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { useEffect, useState } from "react";
+import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import useApi from "../../../hooks/useApi";
+
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows);
-  console.log(data);
+  const [data, setData] = useState([]);
+  const api = useApi();
+  const [loading,setLoading] = useState(true);
+  useEffect(()=>{
+    fetchTours()
+  },[])
+
+  const fetchTours = async ()=>{
+    const tourList = await api.getTour();
+    if(tourList && tourList.length > 0){
+        await setData(tourList);
+    } else {
+
+    }
+  }
+
+  if(loading){
+    return "loading......"
+  }
+
+
+
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
@@ -47,7 +68,7 @@ const Datatable = () => {
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        checkboxSelection
+        // checkboxSelection
       />
     </div>
   );
