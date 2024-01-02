@@ -2,12 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { DarkModeContextProvider } from "./context/darkModeContext";
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
-  <React.StrictMode>
+
+  <React.Fragment>
+    <RecoilRoot>
     <DarkModeContextProvider>
       <App />
     </DarkModeContextProvider>
-  </React.StrictMode>,
+   </RecoilRoot>
+   </React.Fragment>,
   document.getElementById("root")
 );

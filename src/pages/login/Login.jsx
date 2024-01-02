@@ -2,13 +2,18 @@ import { useRef } from "react"
 import "./login.css"
 import useApi from "../../hooks/useApi";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { userInformationAtom } from "../../states/common";
+
 
 const Login = () => {
 
+  
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const api = useApi();
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(userInformationAtom);
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const user = {
@@ -19,7 +24,10 @@ const Login = () => {
     console.log(response.accessToken,"access token");
 
     if(response.data){
+      console.log(response.data,"from login")
       await localStorage.setItem("token",response.accessToken);
+      await setUserInfo(response.data);
+      
       /** create a logic if admin then redirect to tour panel and if user then go to my transection page*/
       navigate("/users");
     }
