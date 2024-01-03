@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import useApi from "../../../hooks/useApi";
+import moment from "moment";
 
 
 const Datatable = () => {
@@ -10,19 +11,49 @@ const Datatable = () => {
   const [loading,setLoading] = useState(true);
 
    const userColumns = [
-    { field: "tour_id", headerName: "Tour Name", width: 70 },
-    // {
-    //   field: "email",
-    //   headerName: "Email",
-    //   width: 230,
-    // },
-  
-    // {
-    //   field: "age",
-    //   headerName: "Age",
-    //   width: 100,
-    // },
-
+    { field: "id", headerName: "Tour Id", width: 100 },
+    {
+        field: "code",
+        headerName: "Tour Code",
+        width: 100,
+      },
+      {
+        field: "tour_name",
+        headerName: "Tour Name",
+        width: 250,
+      },
+      
+      {
+        field: "original_costing",
+        headerName: "Orginal Cost",
+        width: 120,
+      },
+      {
+        field: "cost",
+        headerName: "Cost",
+        width: 120,
+      },
+      {
+        field: "starting_date",
+        headerName: "Tour start date",
+        width: 200,
+      },
+      {
+        field: "end_date",
+        headerName: "Tour end date",
+        width: 200,
+        renderCell:(params)=> {
+            <p>{moment(params.row.end_date).format('MM/DD/YYYY')}</p>  
+        }
+      },
+      {
+        field: "end_date",
+        headerName: "Tour end date",
+        width: 200,
+        renderCell:(params)=> {
+            <p>{moment(params.row.end_date).format('MM/DD/YYYY')}</p>  
+        }
+      }
   ];
   
 
