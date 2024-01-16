@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import useApi from "../../../hooks/useApi";
 import moment from "moment";
@@ -9,7 +9,7 @@ const Datatable = () => {
   const [data, setData] = useState([]);
   const api = useApi();
   const [loading,setLoading] = useState(true);
-
+  const navigate = useNavigate();
    const userColumns = [
     { field: "id", headerName: "Tour Id", width: 100 },
     {
@@ -37,22 +37,17 @@ const Datatable = () => {
         field: "starting_date",
         headerName: "Tour start date",
         width: 200,
+        renderCell:(params)=> (
+          <p>{moment(params.row.starting_date).format('MM/DD/YYYY')}</p>  
+       )
       },
       {
         field: "end_date",
         headerName: "Tour end date",
         width: 200,
-        renderCell:(params)=> {
+        renderCell:(params)=> (
             <p>{moment(params.row.end_date).format('MM/DD/YYYY')}</p>  
-        }
-      },
-      {
-        field: "end_date",
-        headerName: "Tour end date",
-        width: 200,
-        renderCell:(params)=> {
-            <p>{moment(params.row.end_date).format('MM/DD/YYYY')}</p>  
-        }
+        )
       }
   ];
   
@@ -70,18 +65,18 @@ const Datatable = () => {
 
     }
   }
-
-
-
+  
   if(loading){
     return "loading......"
   }
 
-
-
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
+
+  const handleItem =(tourId)=>{
+      navigate(`${tourId}`);
+  }
 
   const actionColumn = [
     {
@@ -91,9 +86,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
+              <div onClick={()=>handleItem(params.row.id)} className="viewButton">View</div>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}

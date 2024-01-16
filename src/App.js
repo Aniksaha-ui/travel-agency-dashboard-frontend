@@ -9,6 +9,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import Index from "./pages/dashboard/tours";
+import TourDetails from "./pages/dashboard/tours/details/TourDetails";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -39,6 +40,7 @@ function App() {
 
             <Route path="tours">
               <Route index element={<Index />} />
+              <Route path=":tourId" element={<TourDetails />} />
             </Route>
           </Route>
         </Routes>

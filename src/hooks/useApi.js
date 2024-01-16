@@ -57,12 +57,21 @@ const useApi = () => {
   return response.data.data
   };
 
+  const getTourById = async(id)=>{
+    const response = await axiosClient.apiClient(
+      "GET",
+      `tour/${id}`
+    );
+    return response.data.data;
+  }
+
 
   return {
     login,
     getAllCategory,
     getLocalStorageValue,
-    getTour
+    getTour,
+    getTourById
   };
 };
 
