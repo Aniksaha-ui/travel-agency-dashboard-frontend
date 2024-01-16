@@ -6,47 +6,45 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  BarChart,
-  Bar,
-  YAxis,
-  Legend,
-  Rectangle,
 } from "recharts";
 
-// const data = [
-//   { name: "January", Total: 1200 },
-//   { name: "February", Total: 2100 },
-//   { name: "March", Total: 800 },
-//   { name: "April", Total: 1600 },
-//   { name: "May", Total: 900 },
-//   { name: "June", Total: 1700 },
-// ];
+const data = [
+  { name: "January", Total: 1200 },
+  { name: "February", Total: 2100 },
+  { name: "March", Total: 800 },
+  { name: "April", Total: 1600 },
+  { name: "May", Total: 900 },
+  { name: "June", Total: 1700 },
+];
 
-const Chart = ({ info,aspect, title }) => {
-  const data = info;
-  console.log(data,"chartDataInfo");
+const Chart = ({ aspect, title }) => {
   return (
     <div className="chart">
       <div className="title">{title}</div>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          width={500}
-          height={300}
+      <ResponsiveContainer width="100%" aspect={aspect}>
+        <AreaChart
+          width={730}
+          height={250}
           data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
+          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="cardholdername" />
-          <YAxis />
+          <defs>
+            <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="name" stroke="gray" />
+          <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="amount" fill="#82ca9d" activeBar={<Rectangle fill="blue" stroke="purple" />} />
-        </BarChart>
+          <Area
+            type="monotone"
+            dataKey="Total"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#total)"
+          />
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );
