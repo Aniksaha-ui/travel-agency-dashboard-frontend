@@ -73,7 +73,7 @@ const TourDetails = () => {
           </div>
           <div className="right">
             {/* <Chart info={trnx} aspect={3 / 1} title="User Spending ( Last 3 Months)" /> */}
-            <Chart aspect={3 / 1} title="User Spending ( Last 3 Months)" />
+            {/* <Chart aspect={3 / 1} title="User Spending ( Last 3 Months)" /> */}
           </div>
         </div>
         <div className="bottom">
