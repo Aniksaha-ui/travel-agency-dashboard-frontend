@@ -3,7 +3,6 @@ import useAxios from "./useAxios";
 import { USER_NOT_FOUND } from "./apiMessage";
 
 const useApi = () => {
- 
   const axiosClient = useAxios();
 
   /** get localstorage value */
@@ -27,15 +26,15 @@ const useApi = () => {
       if (response?.data) {
         return response.data;
       }
-    }else{
-      return {message:response.message,data:[]}
+    } else {
+      return { message: response.message, data: [] };
     }
     return null;
   };
   /** calling login api */
 
   /** calling category api */
-  const getAllCategory = async (keyword, pageNumber=0) => {
+  const getAllCategory = async (keyword, pageNumber = 0) => {
     const response = await axiosClient.apiClient(
       "GET",
       `category/all?keyword=${keyword}&page=1`
@@ -51,27 +50,31 @@ const useApi = () => {
 
   /** get all tour */
   const getTour = async () => {
-    const response = await axiosClient.apiClient(
-      "POST","tour"
-    );
-  return response.data.data
+    const response = await axiosClient.apiClient("POST", "tour");
+    return response.data.data;
   };
 
-  const getTourById = async(id)=>{
-    const response = await axiosClient.apiClient(
-      "GET",
-      `tour/${id}`
-    );
+  const getTourById = async (id) => {
+    const response = await axiosClient.apiClient("GET", `tour/${id}`);
     return response.data.data;
-  }
+  };
 
+  /*************************Transaction service start here ******************/
+  const getApprovedTransaction = async () => {
+    const response = await axiosClient.apiClient("GET", "transection/approved");
+    console.log(getApprovedTransaction);
+    return response.data.data;
+  };
+
+  /*************************Transaction service start here ******************/
 
   return {
     login,
     getAllCategory,
     getLocalStorageValue,
     getTour,
-    getTourById
+    getTourById,
+    getApprovedTransaction,
   };
 };
 

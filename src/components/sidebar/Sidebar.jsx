@@ -32,32 +32,21 @@ const Sidebar = () => {
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
-          <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <p className="title">Tour Management</p>
+          <Link to="/tours" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Tours</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+
+          <p className="title">Transection Management</p>
+          <Link to="/trnx/pending" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
-              <span>Products</span>
+              <InsertChartIcon className="icon" />
+              <span>Pending Transection</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
-          <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>

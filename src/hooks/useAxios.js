@@ -22,13 +22,14 @@ const useAxios = () => {
     }
   );
 
-
   /**declear headers */
 
   const apiClient = (method, url, body) => {
     const headers = {
-      authorization :localStorage.getItem('token') ? 'Bearer ' +localStorage.getItem('token') : ""
-    }
+      authorization: localStorage.getItem("token")
+        ? "Bearer " + localStorage.getItem("token")
+        : "",
+    };
     return api
       .request({ method, url, data: body, headers })
       .then((response) => {

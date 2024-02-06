@@ -10,6 +10,8 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import Index from "./pages/dashboard/tours";
 import TourDetails from "./pages/dashboard/tours/details/TourDetails";
+import AddTour from "./pages/dashboard/tours/add/addTour";
+import ApprovedTransection from "./pages/dashboard/transaction/approvedTransection/approved";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -41,6 +43,19 @@ function App() {
             <Route path="tours">
               <Route index element={<Index />} />
               <Route path=":tourId" element={<TourDetails />} />
+              <Route
+                path="add"
+                element={<AddTour inputs={userInputs} title="Add New Tour" />}
+              />
+            </Route>
+
+            <Route path="trnx">
+              <Route index element={<ApprovedTransection/>} />
+              <Route path=":tourId" element={<TourDetails />} />
+              <Route
+                path="add"
+                element={<AddTour inputs={userInputs} title="Add New Tour" />}
+              />
             </Route>
           </Route>
         </Routes>
