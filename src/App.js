@@ -56,6 +56,7 @@ function App() {
                 path="add"
                 element={<AddTour inputs={userInputs} title="Add New Tour" />}
               />
+              <Route path="new" element={<AddTour title="Add New Product" />} />
             </Route>
           </Route>
         </Routes>
