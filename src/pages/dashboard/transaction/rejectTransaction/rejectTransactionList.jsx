@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
 import useApi from "../../../../hooks/useApi";
-import { Box, CircularProgress,LinearProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
-const ApprovedTransectionList = () => {
+const RejectTransectionList = () => {
   const [transaction, setTransaction] = useState([]);
   const api = useApi();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const userColumns = [
+  const transectionColumns = [
     { field: "id", headerName: "SL", width: 100 },
     {
       field: "bankname",
@@ -22,6 +22,7 @@ const ApprovedTransectionList = () => {
       headerName: "Card No",
       width: 120,
     },
+
     {
       field: "cardholdername",
       headerName: "Card Holder Name",
@@ -55,17 +56,17 @@ const ApprovedTransectionList = () => {
       headerName: "Status",
       width: 200,
       renderCell: (params) => (
-        <p>{params.row.status === "a" ? "Approved" : "N/A"}</p>
+        <p>{params.row.status === "r" ? "Reject" : "N/A"}</p>
       ),
     },
   ];
 
   useEffect(() => {
-    fetchApprovedTransaction();
+    fetchPendingTransaction();
   }, []);
 
-  const fetchApprovedTransaction = async () => {
-    const transactionList = await api.getApprovedTransaction();
+  const fetchPendingTransaction = async () => {
+    const transactionList = await api.getRejectTransaction();
     if (transactionList && transactionList.length > 0) {
       await setTransaction(transactionList);
       setLoading(false);
@@ -76,10 +77,10 @@ const ApprovedTransectionList = () => {
 
   if (loading) {
     return (
-            <Box sx={{ display: 'flex', alignItems:'center', justifyContent:'center' }}>
-              <CircularProgress />
-          </Box>
-    );
+        <Box sx={{ display: 'flex', alignItems:'center', justifyContent:'center' }}>
+          <CircularProgress />
+      </Box>
+);
   }
 
   return (
@@ -88,7 +89,7 @@ const ApprovedTransectionList = () => {
       <DataGrid
         className="datagrid"
         rows={transaction}
-        columns={userColumns}
+        columns={transectionColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
@@ -96,4 +97,4 @@ const ApprovedTransectionList = () => {
   );
 };
 
-export default ApprovedTransectionList;
+export default RejectTransectionList;

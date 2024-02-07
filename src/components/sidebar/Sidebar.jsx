@@ -53,6 +53,13 @@ const Sidebar = () => {
               <span>Pending Transection</span>
             </li>
           </Link>
+          <Link to="/trnx/reject" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Reject Transection</span>
+            </li>
+          </Link>
+
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>

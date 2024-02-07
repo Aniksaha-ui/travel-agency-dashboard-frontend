@@ -20,13 +20,13 @@ const PendingTransectionList = () => {
     {
       field: "cardNo",
       headerName: "Card No",
-      width: 250,
+      width: 120,
     },
 
     {
       field: "cardholdername",
       headerName: "Card Holder Name",
-      width: 120,
+      width:150,
     },
     {
       field: "cardtype",

@@ -70,6 +70,12 @@ const useApi = () => {
     const response = await axiosClient.apiClient("GET", "transection/pending");
     return response.data.data;
   };
+
+  const getRejectTransaction = async () => {
+    const response = await axiosClient.apiClient("GET", "transection/reject");
+    return response.data.data;
+  };
+
   /*************************Transaction service start here ******************/
 
   return {
@@ -79,7 +85,8 @@ const useApi = () => {
     getTour,
     getTourById,
     getApprovedTransaction,
-    getPendingTransaction
+    getPendingTransaction,
+    getRejectTransaction
   };
 };
 
