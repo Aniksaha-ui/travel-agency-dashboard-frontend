@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import useApi from "../../../hooks/useApi";
 import moment from "moment";
+import { Box, CircularProgress } from "@mui/material";
 
 
 const Datatable = () => {
@@ -67,7 +68,11 @@ const Datatable = () => {
   }
   
   if(loading){
-    return "loading......"
+    return (
+      <Box sx={{ display: 'flex', alignItems:'center', justifyContent:'center' }}>
+        <CircularProgress />
+    </Box>
+);
   }
 
   const handleDelete = (id) => {

@@ -41,6 +41,12 @@ const Sidebar = () => {
           </Link>
 
           <p className="title">Transection Management</p>
+          <Link to="/trnx/approved" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Approved Transection</span>
+            </li>
+          </Link>
           <Link to="/trnx/pending" style={{ textDecoration: "none" }}>
             <li>
               <InsertChartIcon className="icon" />

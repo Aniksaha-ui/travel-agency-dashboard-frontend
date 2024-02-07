@@ -62,10 +62,14 @@ const useApi = () => {
   /*************************Transaction service start here ******************/
   const getApprovedTransaction = async () => {
     const response = await axiosClient.apiClient("GET", "transection/approved");
-    console.log(getApprovedTransaction);
     return response.data.data;
   };
 
+
+  const getPendingTransaction = async () => {
+    const response = await axiosClient.apiClient("GET", "transection/pending");
+    return response.data.data;
+  };
   /*************************Transaction service start here ******************/
 
   return {
@@ -75,6 +79,7 @@ const useApi = () => {
     getTour,
     getTourById,
     getApprovedTransaction,
+    getPendingTransaction
   };
 };
 

@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
 import useApi from "../../../../hooks/useApi";
-import { Box, CircularProgress,LinearProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
-const ApprovedTransectionList = () => {
+const PendingTransectionList = () => {
   const [transaction, setTransaction] = useState([]);
   const api = useApi();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const userColumns = [
+  const transectionColumns = [
     { field: "id", headerName: "SL", width: 100 },
     {
       field: "bankname",
@@ -62,11 +62,11 @@ const ApprovedTransectionList = () => {
   ];
 
   useEffect(() => {
-    fetchApprovedTransaction();
+    fetchPendingTransaction();
   }, []);
 
-  const fetchApprovedTransaction = async () => {
-    const transactionList = await api.getApprovedTransaction();
+  const fetchPendingTransaction = async () => {
+    const transactionList = await api.getPendingTransaction();
     if (transactionList && transactionList.length > 0) {
       await setTransaction(transactionList);
       setLoading(false);
@@ -77,10 +77,10 @@ const ApprovedTransectionList = () => {
 
   if (loading) {
     return (
-            <Box sx={{ display: 'flex', alignItems:'center', justifyContent:'center' }}>
-              <CircularProgress />
-          </Box>
-    );
+        <Box sx={{ display: 'flex', alignItems:'center', justifyContent:'center' }}>
+          <CircularProgress />
+      </Box>
+);
   }
 
   return (
@@ -89,7 +89,7 @@ const ApprovedTransectionList = () => {
       <DataGrid
         className="datagrid"
         rows={transaction}
-        columns={userColumns}
+        columns={transectionColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
@@ -97,4 +97,4 @@ const ApprovedTransectionList = () => {
   );
 };
 
-export default ApprovedTransectionList;
+export default PendingTransectionList;

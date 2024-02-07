@@ -12,6 +12,7 @@ import Index from "./pages/dashboard/tours";
 import TourDetails from "./pages/dashboard/tours/details/TourDetails";
 import AddTour from "./pages/dashboard/tours/add/addTour";
 import ApprovedTransection from "./pages/dashboard/transaction/approvedTransection/approved";
+import PendingTransection from "./pages/dashboard/transaction/pendingTransaction/pending";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -51,7 +52,8 @@ function App() {
 
             <Route path="trnx">
               <Route index element={<ApprovedTransection/>} />
-              <Route path=":tourId" element={<TourDetails />} />
+              <Route path="approved" element={<ApprovedTransection />} />
+              <Route path="pending" element={<PendingTransection />} />
               <Route
                 path="add"
                 element={<AddTour inputs={userInputs} title="Add New Tour" />}
