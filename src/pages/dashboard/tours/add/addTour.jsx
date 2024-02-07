@@ -58,8 +58,7 @@ const AddTour = ({ title }) => {
                     id="outlined-read-only-input"
                     label="Available Seat"
                   />
-                </div>
-                <div>
+
                   <TextField id="outlined-number" label="Orginal Costing" />
                   <TextField id="outlined-search" label="Customer Cost" />
                   <TextField
@@ -75,18 +74,19 @@ const AddTour = ({ title }) => {
                   <CKEditor />
                 </div>
               </Box>
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+
+              <div style={{ margin: "auto" }}>
                 <CKEditor
                   editor={ClassicEditor}
                   data="<p>Hello from the first editor working with the context!</p>"
                 />
-              </Box> */}
+              </div>
+              <div style={{ margin: "auto" }}>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data="<p>Hello from the first editor working with the context!</p>"
+                />
+              </div>
 
               <button>Send</button>
             </form>
