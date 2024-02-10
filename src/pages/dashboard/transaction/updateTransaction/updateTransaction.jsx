@@ -1,4 +1,4 @@
-import "./update.scss";
+import "../../../../common/css/form.css";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import Box from "@mui/material/Box";
@@ -6,12 +6,14 @@ import { useRef } from "react";
 import Sidebar from "../../../../components/sidebar/Sidebar";
 import Navbar from "../../../../components/navbar/Navbar";
 import { useParams } from "react-router-dom";
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete from "@mui/material/Autocomplete";
+import { Card, CardHeader } from "@mui/material";
 
 const UpdateTransaction = () => {
-  const {tourId} = useParams();
-  console.log(tourId,"params");
+  const { tourId } = useParams();
+  console.log(tourId, "params");
   const userNameRef = useRef("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const userName = userNameRef.current.value;
@@ -26,47 +28,160 @@ const UpdateTransaction = () => {
   return (
     <div className="new">
       <Sidebar />
-      <div className="newContainer">
-        <Navbar />
-        <div className="top">
-          <h1 style={{textAlign: 'center'}}>Update Transaction History</h1>
-        </div>
-        <div className="bottom">
-          <div className="right">
-            <form onSubmit={handleSubmit}>
-              <Box
-                component="form"
-                sx={{
-                  "& .MuiTextField-root": { m: 1, width: "38ch" },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <div>
-             
-                  <TextField
-                    required
-                    id="outlined-required"
-                    label="Remarks"
-                    inputRef={userNameRef}
-                  />
+      <div className=" newContainer formbold-main-wrapper">
+        <Card>
+          <h3 style={{ color: "blue", textAlign: "center" }}>
+            Status Update form
+          </h3>
+          <div className="formbold-form-wrapper">
+            <form action="https://formbold.com/s/FORM_ID" method="POST">
+              <div className="formbold-input-group">
+                <label htmlFor="name" className="formbold-form-label">
+                  {" "}
+                  Name{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter your name"
+                  className="formbold-form-input"
+                />
+              </div>
 
-                  <TextField
-                    required
-                    id="outlined-required"
-                    label="Status"
-                    inputRef={userNameRef}
-                  />
-                 
+              <div className="formbold-input-group">
+                <label htmlFor="email" className="formbold-form-label">
+                  {" "}
+                  Email{" "}
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="formbold-form-input"
+                />
+              </div>
+
+              <div className="formbold-input-group">
+                <label htmlFor="age" className="formbold-form-label">
+                  {" "}
+                  Age{" "}
+                </label>
+                <input
+                  type="text"
+                  name="age"
+                  id="age"
+                  placeholder="Enter your age"
+                  className="formbold-form-input"
+                />
+              </div>
+
+              <div className="formbold-input-group">
+                <label className="formbold-form-label">
+                  Which option best describes you?
+                </label>
+
+                <select
+                  className="formbold-form-select"
+                  name="occupation"
+                  id="occupation"
+                >
+                  <option value="Student">Student</option>
+                  <option value="designer">UX/UI Designer</option>
+                  <option value="fullstack">Full Stack Developer</option>
+                  <option value="frontend">Front End Developer</option>
+                </select>
+              </div>
+
+              <div className="formbold-input-radio-wrapper">
+                <label htmlFor="ans" className="formbold-form-label">
+                  Would you recommend our site to a friend?
+                </label>
+
+                <div className="formbold-radio-flex">
+                  <div className="formbold-radio-group">
+                    <label className="formbold-radio-label">
+                      <input
+                        className="formbold-input-radio"
+                        type="radio"
+                        name="ans"
+                        id="ans_yes"
+                      />
+                      Yes
+                      <span className="formbold-radio-checkmark"></span>
+                    </label>
+                  </div>
+
+                  <div className="formbold-radio-group">
+                    <label className="formbold-radio-label">
+                      <input
+                        className="formbold-input-radio"
+                        type="radio"
+                        name="ans"
+                        id="ans_no"
+                      />
+                      No
+                      <span className="formbold-radio-checkmark"></span>
+                    </label>
+                  </div>
+
+                  <div className="formbold-radio-group">
+                    <label className="formbold-radio-label">
+                      <input
+                        className="formbold-input-radio"
+                        type="radio"
+                        name="ans"
+                        id="ans_maybe"
+                      />
+                      Maybe
+                      <span className="formbold-radio-checkmark"></span>
+                    </label>
+                  </div>
                 </div>
-              </Box>
+              </div>
 
-       
+              <div className="formbold-input-radio-wrapper">
+                <label className="formbold-form-label">
+                  Which languages & frameworks do you know?
+                </label>
 
-              <button>Update Status</button>
+                <div className="formbold-radio-flex">
+                  <div className="formbold-radio-group">
+                    <label className="formbold-radio-label" htmlFor="lang_c">
+                      <input
+                        className="formbold-input-radio"
+                        type="checkbox"
+                        name="c"
+                        id="lang_c"
+                      />
+                      C<span className="formbold-radio-checkmark"></span>
+                    </label>
+                  </div>
+
+                  {/* Add other language checkboxes here */}
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="formbold-form-label">
+                  Any comments or suggestions
+                </label>
+                <textarea
+                  rows="6"
+                  name="message"
+                  id="message"
+                  placeholder="Type here..."
+                  className="formbold-form-input"
+                ></textarea>
+              </div>
+
+              <button type="submit" className="formbold-btn">
+                Submit
+              </button>
             </form>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );
