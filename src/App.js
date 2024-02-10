@@ -14,6 +14,7 @@ import AddTour from "./pages/dashboard/tours/add/addTour";
 import ApprovedTransection from "./pages/dashboard/transaction/approvedTransection/approved";
 import PendingTransection from "./pages/dashboard/transaction/pendingTransaction/pending";
 import RejectTransection from "./pages/dashboard/transaction/rejectTransaction/reject";
+import UpdateTransaction from "./pages/dashboard/transaction/updateTransaction/updateTransaction";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -61,6 +62,7 @@ function App() {
                 element={<AddTour inputs={userInputs} title="Add New Tour" />}
               />
               <Route path="new" element={<AddTour title="Add New Product" />} />
+              <Route path="update/:tourId" element={<UpdateTransaction />} />
             </Route>
           </Route>
         </Routes>

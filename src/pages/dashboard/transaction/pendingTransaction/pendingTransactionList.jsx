@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
 import useApi from "../../../../hooks/useApi";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 
 const PendingTransectionList = () => {
   const [transaction, setTransaction] = useState([]);
@@ -46,7 +46,7 @@ const PendingTransectionList = () => {
     {
       field: "createdAt",
       headerName: "createdAt",
-      width: 200,
+      width: 120,
       renderCell: (params) => (
         <p>{moment(params.row.createdAt).format("MM/DD/YYYY")}</p>
       ),
@@ -54,10 +54,29 @@ const PendingTransectionList = () => {
     {
       field: "status",
       headerName: "Status",
-      width: 200,
+      width: 120,
       renderCell: (params) => (
         <p>{params.row.status === "p" ? "Pending" : "N/A"}</p>
       ),
+    },
+  ];
+
+  const handleEditTransaction = (transectionId) =>{
+    navigate(`/trnx/update/${transectionId}`)
+  }
+
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 120,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+              <Button onClick={()=>handleEditTransaction(params.row.id)}  color="primary" variant='contained'>update</Button>
+          </div>
+        );
+      },
     },
   ];
 
@@ -89,7 +108,7 @@ const PendingTransectionList = () => {
       <DataGrid
         className="datagrid"
         rows={transaction}
-        columns={transectionColumns}
+        columns={transectionColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
