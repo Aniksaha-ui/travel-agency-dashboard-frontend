@@ -53,7 +53,7 @@ function App() {
             </Route>
 
             <Route path="trnx">
-              <Route index element={<ApprovedTransection/>} />
+              <Route index element={<ApprovedTransection />} />
               <Route path="approved" element={<ApprovedTransection />} />
               <Route path="pending" element={<PendingTransection />} />
               <Route path="reject" element={<RejectTransection />} />
