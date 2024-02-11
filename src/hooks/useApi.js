@@ -65,7 +65,6 @@ const useApi = () => {
     return response.data.data;
   };
 
-
   const getPendingTransaction = async () => {
     const response = await axiosClient.apiClient("GET", "transection/pending");
     return response.data.data;
@@ -74,6 +73,23 @@ const useApi = () => {
   const getRejectTransaction = async () => {
     const response = await axiosClient.apiClient("GET", "transection/reject");
     return response.data.data;
+  };
+
+  const getTransactionById = async (trnxId) => {
+    const response = await axiosClient.apiClient(
+      "GET",
+      `transection/${trnxId}`
+    );
+    return response.data.data;
+  };
+
+  const updateTransactionStatus = async (data) => {
+    const response = await axiosClient.apiClient(
+      "POST",
+      "transection/update",
+      data
+    );
+    return response.data.isExecute;
   };
 
   /*************************Transaction service start here ******************/
@@ -86,7 +102,9 @@ const useApi = () => {
     getTourById,
     getApprovedTransaction,
     getPendingTransaction,
-    getRejectTransaction
+    getRejectTransaction,
+    getTransactionById,
+    updateTransactionStatus,
   };
 };
 

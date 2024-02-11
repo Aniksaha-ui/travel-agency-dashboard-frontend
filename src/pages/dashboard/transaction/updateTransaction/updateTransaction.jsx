@@ -1,29 +1,48 @@
 import "../../../../common/css/form.css";
-import TextField from "@mui/material/TextField";
 import * as React from "react";
-import Box from "@mui/material/Box";
 import { useRef } from "react";
 import Sidebar from "../../../../components/sidebar/Sidebar";
-import Navbar from "../../../../components/navbar/Navbar";
-import { useParams } from "react-router-dom";
-import Autocomplete from "@mui/material/Autocomplete";
-import { Card, CardHeader } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Card } from "@mui/material";
+import { useEffect } from "react";
+import useApi from "../../../../hooks/useApi";
+import { useState } from "react";
+import moment from "moment";
 
 const UpdateTransaction = () => {
-  const { tourId } = useParams();
-  console.log(tourId, "params");
-  const userNameRef = useRef("");
+  const api = useApi();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [trnxInfo, setTrnxInfo] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userName = userNameRef.current.value;
-    console.log(userName);
+  const { trnxId } = useParams();
+  const trnxIdRef = useRef("");
+  const statusRef = useRef("");
+  const remarksRef = useRef("");
+
+  useEffect(() => {
+    loadTransactionInformation();
+  }, []);
+
+  const loadTransactionInformation = async () => {
+    const transectionInfo = await api.getTransactionById(trnxId);
+    if (transectionInfo.length > 0) {
+      setTrnxInfo(transectionInfo[0]);
+    }
+    console.log(trnxInfo, "iunfo");
   };
 
-  const top100Films = [
-    { label: "Upcomeing", value: "Upcomeing" },
-    { label: "Complete", value: "Complete" },
-  ];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const transectionId = trnxIdRef.current.value;
+    const status = statusRef.current.value;
+    const remarks = remarksRef.current.value;
+    const information = { id: transectionId, status: status, remarks: remarks };
+    const updateTransaction = await api.updateTransactionStatus(information);
+    if (updateTransaction === true) {
+      navigate("/trnx");
+    }
+  };
 
   return (
     <div className="new">
@@ -42,142 +61,43 @@ const UpdateTransaction = () => {
           </h3>
           <hr />
           <div className="formbold-form-wrapper">
-            <form action="https://formbold.com/s/FORM_ID" method="POST">
+            <form onSubmit={handleSubmit}>
               <div className="formbold-input-group">
-                <label htmlFor="name" className="formbold-form-label">
-                  {" "}
-                  Name{" "}
+                <label htmlFor="trnxId" className="formbold-form-label">
+                  Transaction Number
                 </label>
                 <input
+                  ref={trnxIdRef}
                   type="text"
-                  name="name"
                   id="name"
-                  placeholder="Enter your name"
-                  className="formbold-form-input"
-                />
-              </div>
-
-              <div className="formbold-input-group">
-                <label htmlFor="email" className="formbold-form-label">
-                  {" "}
-                  Email{" "}
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="formbold-form-input"
-                />
-              </div>
-
-              <div className="formbold-input-group">
-                <label htmlFor="age" className="formbold-form-label">
-                  {" "}
-                  Age{" "}
-                </label>
-                <input
-                  type="text"
-                  name="age"
-                  id="age"
-                  placeholder="Enter your age"
+                  disabled
+                  value={trnxId}
+                  placeholder="Transaction Number"
                   className="formbold-form-input"
                 />
               </div>
 
               <div className="formbold-input-group">
                 <label className="formbold-form-label">
-                  Which option best describes you?
+                  Transaction Status
                 </label>
-
                 <select
+                  ref={statusRef}
                   className="formbold-form-select"
-                  name="occupation"
                   id="occupation"
                 >
-                  <option value="Student">Student</option>
-                  <option value="designer">UX/UI Designer</option>
-                  <option value="fullstack">Full Stack Developer</option>
-                  <option value="frontend">Front End Developer</option>
+                  <option value="a">Approved</option>
+                  <option value="designer">Reject</option>
                 </select>
-              </div>
-
-              <div className="formbold-input-radio-wrapper">
-                <label htmlFor="ans" className="formbold-form-label">
-                  Would you recommend our site to a friend?
-                </label>
-
-                <div className="formbold-radio-flex">
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label">
-                      <input
-                        className="formbold-input-radio"
-                        type="radio"
-                        name="ans"
-                        id="ans_yes"
-                      />
-                      Yes
-                      <span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label">
-                      <input
-                        className="formbold-input-radio"
-                        type="radio"
-                        name="ans"
-                        id="ans_no"
-                      />
-                      No
-                      <span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label">
-                      <input
-                        className="formbold-input-radio"
-                        type="radio"
-                        name="ans"
-                        id="ans_maybe"
-                      />
-                      Maybe
-                      <span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="formbold-input-radio-wrapper">
-                <label className="formbold-form-label">
-                  Which languages & frameworks do you know?
-                </label>
-
-                <div className="formbold-radio-flex">
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label" htmlFor="lang_c">
-                      <input
-                        className="formbold-input-radio"
-                        type="checkbox"
-                        name="c"
-                        id="lang_c"
-                      />
-                      C<span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-
-                  {/* Add other language checkboxes here */}
-                </div>
               </div>
 
               <div>
                 <label htmlFor="message" className="formbold-form-label">
-                  Any comments or suggestions
+                  Remarks
                 </label>
                 <textarea
+                  ref={remarksRef}
                   rows="6"
-                  name="message"
                   id="message"
                   placeholder="Type here..."
                   className="formbold-form-input"
@@ -190,165 +110,33 @@ const UpdateTransaction = () => {
             </form>
           </div>
         </Card>
+
         <Card style={{ marginLeft: "30px" }}>
           <h3
             style={{
               color: "white",
               textAlign: "center",
               padding: "10px",
-              background: "blue",
+              background: "teal",
             }}
           >
-            Status Update form
+            Transaction Information
           </h3>
           <hr />
-          <div className="formbold-form-wrapper">
-            <form action="https://formbold.com/s/FORM_ID" method="POST">
-              <div className="formbold-input-group">
-                <label htmlFor="name" className="formbold-form-label">
-                  {" "}
-                  Name{" "}
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Enter your name"
-                  className="formbold-form-input"
-                />
-              </div>
-
-              <div className="formbold-input-group">
-                <label htmlFor="email" className="formbold-form-label">
-                  {" "}
-                  Email{" "}
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="formbold-form-input"
-                />
-              </div>
-
-              <div className="formbold-input-group">
-                <label htmlFor="age" className="formbold-form-label">
-                  {" "}
-                  Age{" "}
-                </label>
-                <input
-                  type="text"
-                  name="age"
-                  id="age"
-                  placeholder="Enter your age"
-                  className="formbold-form-input"
-                />
-              </div>
-
-              <div className="formbold-input-group">
-                <label className="formbold-form-label">
-                  Which option best describes you?
-                </label>
-
-                <select
-                  className="formbold-form-select"
-                  name="occupation"
-                  id="occupation"
-                >
-                  <option value="Student">Student</option>
-                  <option value="designer">UX/UI Designer</option>
-                  <option value="fullstack">Full Stack Developer</option>
-                  <option value="frontend">Front End Developer</option>
-                </select>
-              </div>
-
-              <div className="formbold-input-radio-wrapper">
-                <label htmlFor="ans" className="formbold-form-label">
-                  Would you recommend our site to a friend?
-                </label>
-
-                <div className="formbold-radio-flex">
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label">
-                      <input
-                        className="formbold-input-radio"
-                        type="radio"
-                        name="ans"
-                        id="ans_yes"
-                      />
-                      Yes
-                      <span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label">
-                      <input
-                        className="formbold-input-radio"
-                        type="radio"
-                        name="ans"
-                        id="ans_no"
-                      />
-                      No
-                      <span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label">
-                      <input
-                        className="formbold-input-radio"
-                        type="radio"
-                        name="ans"
-                        id="ans_maybe"
-                      />
-                      Maybe
-                      <span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="formbold-input-radio-wrapper">
-                <label className="formbold-form-label">
-                  Which languages & frameworks do you know?
-                </label>
-
-                <div className="formbold-radio-flex">
-                  <div className="formbold-radio-group">
-                    <label className="formbold-radio-label" htmlFor="lang_c">
-                      <input
-                        className="formbold-input-radio"
-                        type="checkbox"
-                        name="c"
-                        id="lang_c"
-                      />
-                      C<span className="formbold-radio-checkmark"></span>
-                    </label>
-                  </div>
-
-                  {/* Add other language checkboxes here */}
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="formbold-form-label">
-                  Any comments or suggestions
-                </label>
-                <textarea
-                  rows="6"
-                  name="message"
-                  id="message"
-                  placeholder="Type here..."
-                  className="formbold-form-input"
-                ></textarea>
-              </div>
-
-              <button type="submit" className="formbold-btn">
-                Submit
-              </button>
-            </form>
+          <div
+            style={{
+              paddingTop: "20px",
+              paddingBottom: "400px",
+              paddingRight: "20px",
+              paddingLeft: "20px",
+            }}
+          >
+            <p>Card Holder Name : {trnxInfo.cardholdername}</p>
+            <p>Card No : {trnxInfo.cardNo}</p>
+            <p>Card EXP : {trnxInfo.exp}</p>
+            <p>Card Type : {trnxInfo.cardType}</p>
+            <p>Amount : {trnxInfo.amount}</p>
+            <p>Date : {moment(trnxInfo.createdAt).format("DD-MM-YYYY")}</p>
           </div>
         </Card>
       </div>

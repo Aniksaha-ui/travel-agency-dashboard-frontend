@@ -62,7 +62,7 @@ function App() {
                 element={<AddTour inputs={userInputs} title="Add New Tour" />}
               />
               <Route path="new" element={<AddTour title="Add New Product" />} />
-              <Route path="update/:tourId" element={<UpdateTransaction />} />
+              <Route path="update/:trnxId" element={<UpdateTransaction />} />
             </Route>
           </Route>
         </Routes>
