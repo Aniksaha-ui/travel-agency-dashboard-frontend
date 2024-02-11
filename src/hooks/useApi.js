@@ -94,6 +94,16 @@ const useApi = () => {
 
   /*************************Transaction service start here ******************/
 
+  /*************************Booking Service start here *********************/
+  const getAllBooking = async () => {
+    const response = await axiosClient.apiClient("GET", `booking`);
+    return response.data.data;
+  };
+
+  const getBookingDetails = async () => {};
+
+  /*************************Booking Service end here *********************/
+
   return {
     login,
     getAllCategory,
@@ -105,6 +115,8 @@ const useApi = () => {
     getRejectTransaction,
     getTransactionById,
     updateTransactionStatus,
+    getAllBooking,
+    getBookingDetails,
   };
 };
 

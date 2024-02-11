@@ -15,6 +15,7 @@ import ApprovedTransection from "./pages/dashboard/transaction/approvedTransecti
 import PendingTransection from "./pages/dashboard/transaction/pendingTransaction/pending";
 import RejectTransection from "./pages/dashboard/transaction/rejectTransaction/reject";
 import UpdateTransaction from "./pages/dashboard/transaction/updateTransaction/updateTransaction";
+import Bookings from "./pages/dashboard/bookings/allBookings/bookings";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -63,6 +64,10 @@ function App() {
               />
               <Route path="new" element={<AddTour title="Add New Product" />} />
               <Route path="update/:trnxId" element={<UpdateTransaction />} />
+            </Route>
+
+            <Route path="bookings">
+              <Route index element={<Bookings />} />
             </Route>
           </Route>
         </Routes>
