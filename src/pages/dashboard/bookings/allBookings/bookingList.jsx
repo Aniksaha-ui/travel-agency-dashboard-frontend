@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import useApi from "../../../../hooks/useApi";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 
 const BookingList = () => {
   const [bookings, setBooking] = useState([]);
   const api = useApi();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const handleBookingDetails = (tourId,bookingId,userId) =>{
+      navigate(`/bookings/${tourId}/${bookingId}/${userId}`);
+  }
 
 
   const bookingColumns = [
@@ -55,6 +59,22 @@ const BookingList = () => {
       },
   ];
 
+
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 120,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+              <Button onClick={()=>handleBookingDetails(params.row.tourId,params.row.id,params.row.userId)}  color="primary" variant='contained'>update</Button>
+          </div>
+        );
+      },
+    },
+  ];
+
   useEffect(() => {
     fetchBookingList();
   }, []);
@@ -83,7 +103,7 @@ const BookingList = () => {
       <DataGrid
         className="datagrid"
         rows={bookings}
-        columns={bookingColumns}
+        columns={bookingColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />

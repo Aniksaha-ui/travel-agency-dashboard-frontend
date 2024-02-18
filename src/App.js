@@ -16,6 +16,7 @@ import PendingTransection from "./pages/dashboard/transaction/pendingTransaction
 import RejectTransection from "./pages/dashboard/transaction/rejectTransaction/reject";
 import UpdateTransaction from "./pages/dashboard/transaction/updateTransaction/updateTransaction";
 import Bookings from "./pages/dashboard/bookings/allBookings/bookings";
+import Details from "./pages/dashboard/bookings/details/details";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -68,6 +69,7 @@ function App() {
 
             <Route path="bookings">
               <Route index element={<Bookings />} />
+              <Route path=":tourId/:bookingId/:userId" element={<Details />} />
             </Route>
           </Route>
         </Routes>
