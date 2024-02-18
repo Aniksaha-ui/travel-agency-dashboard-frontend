@@ -14,8 +14,18 @@ const BookingList = () => {
   const bookingColumns = [
     { field: "id", headerName: "Booking Id", width: 100 },
     {
-      field: "tourId",
-      headerName: "TourId",
+      field: "tourName",
+      headerName: "Tour Name",
+      width: 140,
+    },
+    {
+      field: "name",
+      headerName: "Customer Name",
+      width: 140,
+    },
+    {
+      field: "email",
+      headerName: "Customer Email",
       width: 140,
     },
     {
@@ -40,8 +50,8 @@ const BookingList = () => {
     },
     {
         field: "createdAt",
-        headerName: "Created At",
-        width: 140,
+        headerName: "Transaction Date",
+        width: 200,
       },
   ];
 
