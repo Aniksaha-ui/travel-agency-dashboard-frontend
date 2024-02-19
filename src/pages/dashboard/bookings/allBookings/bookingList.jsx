@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import useApi from "../../../../hooks/useApi";
 import { Box, Button, CircularProgress } from "@mui/material";
@@ -10,10 +10,9 @@ const BookingList = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleBookingDetails = (tourId,bookingId,userId) =>{
-      navigate(`/bookings/${tourId}/${bookingId}/${userId}`);
-  }
-
+  const handleBookingDetails = (tourId, bookingId, userId) => {
+    navigate(`/bookings/${tourId}/${bookingId}/${userId}`);
+  };
 
   const bookingColumns = [
     { field: "id", headerName: "Booking Id", width: 100 },
@@ -40,7 +39,7 @@ const BookingList = () => {
     {
       field: "orginal_cost",
       headerName: "Orginal Costing",
-      width:150,
+      width: 150,
     },
     {
       field: "userId",
@@ -53,22 +52,56 @@ const BookingList = () => {
       width: 140,
     },
     {
-        field: "createdAt",
-        headerName: "Transaction Date",
-        width: 200,
-      },
+      field: "createdAt",
+      headerName: "Transaction Date",
+      width: 200,
+    },
   ];
-
 
   const actionColumn = [
     {
       field: "action",
       headerName: "Action",
-      width: 120,
+      width: 250,
       renderCell: (params) => {
         return (
-          <div className="cellAction">
-              <Button onClick={()=>handleBookingDetails(params.row.tourId,params.row.id,params.row.userId)}  color="primary" variant='contained'>update</Button>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "between",
+            }}
+          >
+            <div className="cellAction">
+              <Button
+                onClick={() =>
+                  handleBookingDetails(
+                    params.row.tourId,
+                    params.row.id,
+                    params.row.userId
+                  )
+                }
+                color="primary"
+                variant="contained"
+              >
+                update
+              </Button>
+            </div>
+            <div className="cellAction">
+              <Button
+                onClick={() =>
+                  handleBookingDetails(
+                    params.row.tourId,
+                    params.row.id,
+                    params.row.userId
+                  )
+                }
+                color="primary"
+                variant="contained"
+              >
+                PDF
+              </Button>
+            </div>
           </div>
         );
       },
@@ -91,9 +124,11 @@ const BookingList = () => {
 
   if (loading) {
     return (
-            <Box sx={{ display: 'flex', alignItems:'center', justifyContent:'center' }}>
-              <CircularProgress />
-          </Box>
+      <Box
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
+        <CircularProgress />
+      </Box>
     );
   }
 

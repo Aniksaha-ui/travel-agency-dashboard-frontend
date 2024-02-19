@@ -102,6 +102,14 @@ const useApi = () => {
 
   const getBookingDetails = async () => {};
 
+
+  const bookingDetails = async(userId,tourId,bookingId) =>{
+    const filterOption = {bookingId : bookingId,tourId:tourId,id:userId}
+    const response = await axiosClient.apiClient("POST", "booking/tour-details",filterOption);
+    console.log(response.data.data)
+    return response.data.data;
+  }
+
   /*************************Booking Service end here *********************/
 
   return {
@@ -117,6 +125,7 @@ const useApi = () => {
     updateTransactionStatus,
     getAllBooking,
     getBookingDetails,
+    bookingDetails
   };
 };
 
