@@ -11,7 +11,7 @@ const Datatable = () => {
   const api = useApi();
   const [loading,setLoading] = useState(true);
   const navigate = useNavigate();
-   const userColumns = [
+   const tourColumns = [
     { field: "id", headerName: "Tour Id", width: 100 },
     {
         field: "code",
@@ -83,6 +83,10 @@ const Datatable = () => {
       navigate(`${tourId}`);
   }
 
+  const fetchTourWiseBooking = async(tourId)=>{
+    navigate(`/tours/bookings/${tourId}`);
+  }
+
   const actionColumn = [
     {
       field: "action",
@@ -97,6 +101,13 @@ const Datatable = () => {
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
+            </div>
+
+            <div
+              className="deleteButton"
+              onClick={() => fetchTourWiseBooking(params.row.id)}
+            >
+              Bookings
             </div>
           </div>
         );
@@ -114,10 +125,9 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={tourColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        // checkboxSelection
       />
     </div>
   );

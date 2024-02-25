@@ -59,6 +59,10 @@ const useApi = () => {
     return response.data.data;
   };
 
+  const tourWiseBookingInfomation = async (tourId) =>{
+    const response = await axiosClient.apiClient("GET", `booking/${tourId}`);
+    return response.data.data;
+  }
   /*************************Transaction service start here ******************/
   const getApprovedTransaction = async () => {
     const response = await axiosClient.apiClient("GET", "transection/approved");
@@ -125,7 +129,8 @@ const useApi = () => {
     updateTransactionStatus,
     getAllBooking,
     getBookingDetails,
-    bookingDetails
+    bookingDetails,
+    tourWiseBookingInfomation
   };
 };
 

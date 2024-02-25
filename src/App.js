@@ -17,6 +17,7 @@ import RejectTransection from "./pages/dashboard/transaction/rejectTransaction/r
 import UpdateTransaction from "./pages/dashboard/transaction/updateTransaction/updateTransaction";
 import Bookings from "./pages/dashboard/bookings/allBookings/bookings";
 import Details from "./pages/dashboard/bookings/details/details";
+import TourBookings from "./pages/dashboard/tours/bookings/TourBookings";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -46,6 +47,8 @@ function App() {
             </Route>
 
             <Route path="tours">
+              <Route path="bookings/:tourId" element={<TourBookings />} />
+
               <Route index element={<Index />} />
               <Route path=":tourId" element={<TourDetails />} />
               <Route
