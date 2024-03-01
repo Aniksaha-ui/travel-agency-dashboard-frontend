@@ -5,6 +5,9 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
+import HotelTwoToneIcon from "@mui/icons-material/HotelTwoTone";
+import FestivalTwoToneIcon from "@mui/icons-material/FestivalTwoTone";
+import BookOnlineTwoToneIcon from "@mui/icons-material/BookOnlineTwoTone";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -35,8 +38,16 @@ const Sidebar = () => {
           <p className="title">Tour Management</p>
           <Link to="/tours" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="icon" />
+              <FestivalTwoToneIcon className="icon" />
               <span>Tours</span>
+            </li>
+          </Link>
+
+          <p className="title">Hotel Management</p>
+          <Link to="/hotels" style={{ textDecoration: "none" }}>
+            <li>
+              <HotelTwoToneIcon className="icon" />
+              <span>Hotels Information</span>
             </li>
           </Link>
 
@@ -68,7 +79,7 @@ const Sidebar = () => {
           <p className="title">Booking Management</p>
           <Link to="/bookings" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="icon" />
+              <BookOnlineTwoToneIcon className="icon" />
               <span>Bookings</span>
             </li>
           </Link>

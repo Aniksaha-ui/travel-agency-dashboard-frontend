@@ -102,15 +102,27 @@ const useApi = () => {
 
   const getBookingDetails = async () => {};
 
-
-  const bookingDetails = async(userId,tourId,bookingId) =>{
-    const filterOption = {bookingId : bookingId,tourId:tourId,id:userId}
-    const response = await axiosClient.apiClient("POST", "booking/tour-details",filterOption);
-    console.log(response.data.data)
+  const bookingDetails = async (userId, tourId, bookingId) => {
+    const filterOption = { bookingId: bookingId, tourId: tourId, id: userId };
+    const response = await axiosClient.apiClient(
+      "POST",
+      "booking/tour-details",
+      filterOption
+    );
+    console.log(response.data.data);
     return response.data.data;
-  }
+  };
 
   /*************************Booking Service end here *********************/
+
+  /*************************Hotel Service start *************************/
+
+  const getAllHotels = async () => {
+    const response = await axiosClient.apiClient("POST", `hotel`, {});
+    return response.data.data;
+  };
+
+  /*************************Hotel Service end *************************/
 
   return {
     login,
@@ -125,7 +137,8 @@ const useApi = () => {
     updateTransactionStatus,
     getAllBooking,
     getBookingDetails,
-    bookingDetails
+    bookingDetails,
+    getAllHotels,
   };
 };
 
