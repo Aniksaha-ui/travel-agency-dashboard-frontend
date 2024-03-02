@@ -53,7 +53,7 @@ const HotelList = () => {
     },
     {
       field: "freeAfter",
-      headerName: "Created Date",
+      headerName: "Relased Date",
       width: 200,
       renderCell: (params) => (
         <p>{moment(params.row.freeAfter).format("MM/DD/YYYY")}</p>
@@ -92,8 +92,11 @@ const HotelList = () => {
     );
   }
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = async (id) => {
+    const removeTour = await api.deleteHotel(id);
+    if (removeTour === 1) {
+      setData(data.filter((item) => item.id !== id));
+    }
   };
 
   const handleItem = (tourId) => {
@@ -108,12 +111,12 @@ const HotelList = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <div
+            {/* <div
               onClick={() => handleItem(params.row.id)}
               className="viewButton"
             >
               View
-            </div>
+            </div> */}
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -128,7 +131,7 @@ const HotelList = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        <h3 style={{ textAlign: "center" }}>Hotel Information</h3>
         <Link to="/hotels/add" className="link">
           Add New
         </Link>

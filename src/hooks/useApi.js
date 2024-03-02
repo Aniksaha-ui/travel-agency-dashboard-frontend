@@ -122,10 +122,15 @@ const useApi = () => {
     return response.data.data;
   };
 
-  const addHotel = async(hotel) =>{
-    const response = await axiosClient.apiClient("POST",`hotel/create`,hotel);
+  const addHotel = async (hotel) => {
+    const response = await axiosClient.apiClient("POST", `hotel/create`, hotel);
     return response.data.data;
-  }
+  };
+
+  const deleteHotel = async (hotelId) => {
+    const response = await axiosClient.apiClient("DELETE", `hotel/${hotelId}`);
+    return response.data.data;
+  };
 
   /*************************Hotel Service end *************************/
 
@@ -144,7 +149,8 @@ const useApi = () => {
     getBookingDetails,
     bookingDetails,
     getAllHotels,
-    addHotel
+    addHotel,
+    deleteHotel,
   };
 };
 
