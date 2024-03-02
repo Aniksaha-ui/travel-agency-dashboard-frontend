@@ -129,7 +129,7 @@ const HotelList = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Add New User
-        <Link to="/users/new" className="link">
+        <Link to="/hotels/add" className="link">
           Add New
         </Link>
       </div>

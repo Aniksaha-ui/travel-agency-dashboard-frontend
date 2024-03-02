@@ -18,6 +18,7 @@ import UpdateTransaction from "./pages/dashboard/transaction/updateTransaction/u
 import Bookings from "./pages/dashboard/bookings/allBookings/bookings";
 import Details from "./pages/dashboard/bookings/details/details";
 import Hotels from "./pages/dashboard/hotel";
+import AddHotel from "./pages/dashboard/hotel/add/addHotels";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -74,6 +75,10 @@ function App() {
             </Route>
             <Route path="hotels">
               <Route index element={<Hotels />} />
+              <Route
+                path="add"
+                element={<AddHotel inputs={userInputs} title="Add New Tour" />}
+              />
               {/* <Route path=":tourId/:bookingId/:userId" element={<Details />} /> */}
             </Route>
           </Route>

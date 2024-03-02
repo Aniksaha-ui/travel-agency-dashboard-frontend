@@ -122,6 +122,11 @@ const useApi = () => {
     return response.data.data;
   };
 
+  const addHotel = async(hotel) =>{
+    const response = await axiosClient.apiClient("POST",`hotel/create`,hotel);
+    return response.data.data;
+  }
+
   /*************************Hotel Service end *************************/
 
   return {
@@ -139,6 +144,7 @@ const useApi = () => {
     getBookingDetails,
     bookingDetails,
     getAllHotels,
+    addHotel
   };
 };
 
