@@ -106,15 +106,37 @@ const useApi = () => {
 
   const getBookingDetails = async () => {};
 
-
-  const bookingDetails = async(userId,tourId,bookingId) =>{
-    const filterOption = {bookingId : bookingId,tourId:tourId,id:userId}
-    const response = await axiosClient.apiClient("POST", "booking/tour-details",filterOption);
-    console.log(response.data.data)
+  const bookingDetails = async (userId, tourId, bookingId) => {
+    const filterOption = { bookingId: bookingId, tourId: tourId, id: userId };
+    const response = await axiosClient.apiClient(
+      "POST",
+      "booking/tour-details",
+      filterOption
+    );
+    console.log(response.data.data);
     return response.data.data;
-  }
+  };
 
   /*************************Booking Service end here *********************/
+
+  /*************************Hotel Service start *************************/
+
+  const getAllHotels = async () => {
+    const response = await axiosClient.apiClient("POST", `hotel`, {});
+    return response.data.data;
+  };
+
+  const addHotel = async (hotel) => {
+    const response = await axiosClient.apiClient("POST", `hotel/create`, hotel);
+    return response.data.data;
+  };
+
+  const deleteHotel = async (hotelId) => {
+    const response = await axiosClient.apiClient("DELETE", `hotel/${hotelId}`);
+    return response.data.data;
+  };
+
+  /*************************Hotel Service end *************************/
 
   return {
     login,
@@ -130,7 +152,10 @@ const useApi = () => {
     getAllBooking,
     getBookingDetails,
     bookingDetails,
-    tourWiseBookingInfomation
+    tourWiseBookingInfomation,
+    getAllHotels,
+    addHotel,
+    deleteHotel,
   };
 };
 
