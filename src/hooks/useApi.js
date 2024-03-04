@@ -138,6 +138,22 @@ const useApi = () => {
 
   /*************************Hotel Service end *************************/
 
+  /*************************Account Service start *************************/
+
+  const getAllAccounts = async () => {
+    const response = await axiosClient.apiClient("POST", `account`, {});
+    return response.data.data;
+  };
+
+  const addAccount = async (account) => {
+    const response = await axiosClient.apiClient("POST", `account/create`, account);
+    return response.data.data;
+  };
+
+
+  /*************************Account Service end *************************/
+
+
   return {
     login,
     getAllCategory,
@@ -156,6 +172,8 @@ const useApi = () => {
     getAllHotels,
     addHotel,
     deleteHotel,
+    getAllAccounts,
+    addAccount
   };
 };
 

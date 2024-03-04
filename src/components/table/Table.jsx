@@ -8,6 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const List = ({data}) => {
+
+  const toCapitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
   const rows =data;
   const columns = [...new Set(rows.flatMap(Object.keys))]
   return (
@@ -16,7 +20,7 @@ const List = ({data}) => {
         <TableHead>
           <TableRow>
             {columns.map((row,index)=> 
-            <TableCell className="tableCell">{row}</TableCell>
+            <TableCell className="tableCell">{toCapitalize(row)}</TableCell>
             )}
           </TableRow>
         </TableHead>
