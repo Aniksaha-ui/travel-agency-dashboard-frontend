@@ -79,6 +79,7 @@ const HotelList = () => {
       await setData(tourList);
       setLoading(false);
     } else {
+      setLoading(false);
     }
   };
 

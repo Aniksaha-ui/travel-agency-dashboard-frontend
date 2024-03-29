@@ -37,7 +37,7 @@ const UpdateTransaction = () => {
     const transectionId = trnxIdRef.current.value;
     const status = statusRef.current.value;
     const remarks = remarksRef.current.value;
-    const information = { id: transectionId, status: status, remarks: remarks };
+    const information = { id: transectionId, status: status, remarks: remarks,batchId: trnxInfo.batchId };
     const updateTransaction = await api.updateTransactionStatus(information);
     if (updateTransaction === true) {
       navigate("/trnx");
