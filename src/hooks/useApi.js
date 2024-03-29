@@ -154,6 +154,16 @@ const useApi = () => {
   /*************************Account Service end *************************/
 
 
+
+  /********************************Deposite Service Start **************/
+  const getAllDeposite = async () => {
+    const response = await axiosClient.apiClient("GET", `deposite`);
+    return response.data.data;
+  };
+
+  /********************************Deposite Service Start **************/
+
+
   return {
     login,
     getAllCategory,
@@ -173,7 +183,8 @@ const useApi = () => {
     addHotel,
     deleteHotel,
     getAllAccounts,
-    addAccount
+    addAccount,
+    getAllDeposite
   };
 };
 
