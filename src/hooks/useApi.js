@@ -164,6 +164,15 @@ const useApi = () => {
   /********************************Deposite Service Start **************/
 
 
+
+  /********************************Tour Report Service Start ***********/
+  const batchWiseReport = async(data) =>{
+    const response = await axiosClient.apiClient("POST",'tour/people',data);
+    return response.data.data;
+  }
+  /********************************Tour Report Service End ***********/
+
+
   return {
     login,
     getAllCategory,
@@ -184,7 +193,8 @@ const useApi = () => {
     deleteHotel,
     getAllAccounts,
     addAccount,
-    getAllDeposite
+    getAllDeposite,
+    batchWiseReport
   };
 };
 

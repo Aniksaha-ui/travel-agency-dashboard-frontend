@@ -100,7 +100,7 @@ const Sidebar = () => {
           </Link>
           <p className="title">Tour Report</p>
           <li>
-            <Link to="/accounts" style={{ textDecoration: "none" }}>
+            <Link to="/tours/batchwiseperson" style={{ textDecoration: "none" }}>
               <SettingsSystemDaydreamOutlinedIcon className="icon" />
               <span>Batch Wise Person List</span>
             </Link>
@@ -112,7 +112,7 @@ const Sidebar = () => {
           </Link>
           </li>
           <li>
-          <Link to="/accounts" style={{ textDecoration: "none" }}>
+          <Link to="" style={{ textDecoration: "none" }}>
             <SettingsApplicationsIcon className="icon" />
             <span>Tourwise Selling Report</span>
           </Link>

@@ -23,6 +23,7 @@ import AddHotel from "./pages/dashboard/hotel/add/addHotels";
 import AddAccounts from "./pages/dashboard/accounts/add/addAccounts";
 import Accounts from "./pages/dashboard/accounts";
 import Deposite from "./pages/dashboard/deposite/add";
+import TourWisePerson from "./pages/dashboard/reports/tours/tourwiseperson";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -60,6 +61,8 @@ function App() {
                 path="add"
                 element={<AddTour inputs={userInputs} title="Add New Tour" />}
               />
+              <Route path="batchwiseperson" element={<TourWisePerson />} />
+              
             </Route>
 
             <Route path="trnx">
