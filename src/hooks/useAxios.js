@@ -6,7 +6,7 @@ import {
 } from "../error/error-status";
 
 const useAxios = () => {
-  const axiosConfig = { baseURL: "https://travelagency.sahacompany.site/" };
+  const axiosConfig = { baseURL: "http://localhost:8080/" };
   const api = axios.create(axiosConfig);
 
   api.interceptors.request.use((axiosConfig) => {

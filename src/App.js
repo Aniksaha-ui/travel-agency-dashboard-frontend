@@ -24,6 +24,7 @@ import AddAccounts from "./pages/dashboard/accounts/add/addAccounts";
 import Accounts from "./pages/dashboard/accounts";
 import Deposite from "./pages/dashboard/deposite/add";
 import TourWisePerson from "./pages/dashboard/reports/tours/tourwiseperson";
+import HotelDefaultAccount from "./pages/dashboard/defaulthotelaccount";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -99,6 +100,14 @@ function App() {
             </Route>
             <Route path="deposite">
               <Route index element={<Deposite />} />
+              <Route
+                path="add"
+                element={<AddAccounts inputs={userInputs} title="Add New Account" />}
+              />
+            </Route>
+
+            <Route path="defaulthotelaccount">
+              <Route index element={<HotelDefaultAccount />} />
               <Route
                 path="add"
                 element={<AddAccounts inputs={userInputs} title="Add New Account" />}

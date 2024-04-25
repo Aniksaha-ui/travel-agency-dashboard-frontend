@@ -173,6 +173,23 @@ const useApi = () => {
   /********************************Tour Report Service End ***********/
 
 
+ /*********************************hotel commision default account setup ******/
+  const getHotelCommisionDefaultAccount = async()=>{
+    const response = await axiosClient.apiClient("GET",'defaultCommsionAccount');
+    return response.data.data;
+  }
+
+
+  const addDefaultHotelAccount = async (accountInformation) => {
+    const response = await axiosClient.apiClient("POST", `defaultCommsionAccount/create`, accountInformation);
+    return response.data.data;
+  };
+
+
+ /*********************************hotel commision default account setup ******/
+
+
+
   return {
     login,
     getAllCategory,
@@ -194,7 +211,9 @@ const useApi = () => {
     getAllAccounts,
     addAccount,
     getAllDeposite,
-    batchWiseReport
+    batchWiseReport,
+    getHotelCommisionDefaultAccount,
+    addDefaultHotelAccount
   };
 };
 
