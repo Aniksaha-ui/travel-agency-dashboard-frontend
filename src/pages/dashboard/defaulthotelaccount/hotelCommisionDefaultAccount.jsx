@@ -13,13 +13,18 @@ const HotelCommisionDefaultAccountList = () => {
   const navigate = useNavigate();
    const hotelDefaultCommisionColumns = [
     {
+      field: "hotelId",
+      headerName: "Id",
+      width: 100,
+    },
+    {
         field: "hotel_name",
         headerName: "Hotel Name",
         width: 550,
       },
       {
-        field: "dueAmount",
-        headerName: "Due Amount",
+        field: "cardNo",
+        headerName: "Card No",
         width: 550,
       }
   ];
@@ -79,8 +84,8 @@ const HotelCommisionDefaultAccountList = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Account
-        <Link to="/accounts/add" className="link">
+        Hotel Default Accounts List
+        <Link to="/defaulthotelaccount/add" className="link">
           Add New
         </Link>
       </div>

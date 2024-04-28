@@ -18,7 +18,7 @@ const AddDefaultHotelAccounts = () => {
     e.preventDefault();
     const newAccounts = await api.addDefaultHotelAccount(account)
     if(newAccounts){
-        navigate("/defaultCommsionAccount");
+        navigate("/defaulthotelaccount");
     }
   };
 
